@@ -23,6 +23,26 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING,{
 
 
 
+
+// import routes
+const userAuthRoutes = require('./routers/userAuthRouter')
+
+
+//app middleware
+
+
+//middleware
+app.use('/api', userAuthRoutes)
+
+
+
+
+
+
+
+
+
+
 const port = process.env.PORT
 app.listen(port, ()=>{
     console.log(`listening on port ${port}`)
