@@ -15,8 +15,7 @@ exports.signup = async (req, res) =>{
             } else{
                 const hashPassword = await bcrypt.hash(req.body.password, 10);
                 const newUser = new User({
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
+                    fullName: req.body.fullName,
                     email: req.body.email,
                     password: hashPassword,
                     phone: req.body.phone,
@@ -47,9 +46,12 @@ exports.signIn = async (req, res) => {
         if (user && user.length > 0) {
             const isValidPassword = await bcrypt.compare(req.body.password, user[0].password);
             if (isValidPassword) {
+
+                //generate token 
+
                 const token = jwt.sign(
                     {
-                        firstName: user[0].firstName,
+                        fullName: user[0].fullName,
                         userId: user[0]._id,
                     },
                     process.env.JWT_SECRET,
@@ -67,8 +69,8 @@ exports.signIn = async (req, res) => {
                     error: 'authentication failed',
                 });
             }
-            console.log(user[0]._id)
-            console.log(user[0].firstName);
+            // console.log(user[0]._id)
+            // console.log(user[0].firstName);
         } else {
             res.status(401).json({
                 error: 'authentication failed',

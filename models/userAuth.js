@@ -3,13 +3,7 @@ const mongoose = require('mongoose');
 
 //user auth schema 
 const userAuthSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        trim: true,
-        required: true,
-        max: 32
-    },
-    lastName: {
+    fullName: {
         type: String,
         trim: true,
         required: true,
@@ -27,7 +21,7 @@ const userAuthSchema = new mongoose.Schema({
         required: true,
     },
     phone:{
-        type: Number,
+        type: String,
         required: true,
     },
 
