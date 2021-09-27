@@ -36,6 +36,8 @@ const demoAuthRouter = require('./routers/demoAuthRouter')
 app.use('/api', userAuthRoutes)
 app.use('/api', demoAuthRouter)
 
+
+
 //default error handler
 
 const errorHandler = (err, req, res, next) => {
