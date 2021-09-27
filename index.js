@@ -37,6 +37,12 @@ app.use('/api', userAuthRoutes)
 app.use('/api', demoAuthRouter)
 
 
+//testing heroku deployment
+
+app.get('/', (req, res) => {
+    res.send('checking heroku deployment')
+})
+
 
 //default error handler
 
