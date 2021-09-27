@@ -26,6 +26,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING,{
 
 // import routes
 const userAuthRoutes = require('./routers/userAuthRouter')
+const demoAuthRouter = require('./routers/demoAuthRouter')
 
 
 //app middleware
@@ -33,7 +34,7 @@ const userAuthRoutes = require('./routers/userAuthRouter')
 
 //middleware
 app.use('/api', userAuthRoutes)
-
+app.use('/api', demoAuthRouter)
 
 //default error handler
 

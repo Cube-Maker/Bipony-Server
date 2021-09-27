@@ -30,7 +30,7 @@ exports.signup = async (req, res) =>{
                 });
             }
 
-    } catch {
+    } catch(err) {
         res.status(500).json({
             message: 'signup error find!!!',
         });
@@ -76,7 +76,7 @@ exports.signIn = async (req, res) => {
                 error: 'authentication failed',
             });
         }
-    } catch {
+    } catch(err) {
         res.status(401).json({
             error: 'authentication failed',
         });
