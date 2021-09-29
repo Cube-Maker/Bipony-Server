@@ -4,16 +4,22 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/userAuth');
 
+// Signup function
 
 exports.signup = async (req, res) =>{
     try {
+
+        // checking email is already registered or not
         const userSignUp  = await User.findOne({email: req.body.email});
             if(userSignUp){
                 res.status(404).json({
                     error: 'Email is already taken'
                 })
             } else{
+
+                // password hashing for security
                 const hashPassword = await bcrypt.hash(req.body.password, 10);
+                //taking user info
                 const newUser = new User({
                     fullName: req.body.fullName,
                     email: req.body.email,
@@ -22,7 +28,7 @@ exports.signup = async (req, res) =>{
                     
                 });
 
-                // User.regis
+                // Save user Information
                 await newUser.save();
                 res.status(200).json({
                     newUser,
@@ -37,17 +43,24 @@ exports.signup = async (req, res) =>{
     }
 }
 
+//SignIn Function
 
 exports.signIn = async (req, res) => {
     try {
+
+        //checking email is already registered or not
         const user = await User.find({ email: req.body.email });
-        console.log(user)
-        console.log(user[0]);
+        // console.log(user)
+        // console.log(user[0]);
+
+        //if user is registered?
         if (user && user.length > 0) {
+            //compare this user password against hash password.
             const isValidPassword = await bcrypt.compare(req.body.password, user[0].password);
+            //if password is valid then go to this condition.
             if (isValidPassword) {
 
-                //generate token 
+                //generate jwt token 
 
                 const token = jwt.sign(
                     {
@@ -60,6 +73,8 @@ exports.signIn = async (req, res) => {
                     }
                 );
                 res.status(200).json({
+                    
+                    //saving the token & data.
                     access_token: token,
                     message: 'login successfully',
                     data: user[0]
