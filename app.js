@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING,{
 const userAuthRouters = require('./routers/userAuthRouter')
 const demoAuthRouters = require('./routers/demoAuthRouter')
 const vendorAuthRoutes = require('./routers/vendorAuthRouter')
-
+const vendorProductRouters = require('./routers/vendorProductRouter')
 
 //app middleware
 
@@ -37,6 +37,7 @@ const vendorAuthRoutes = require('./routers/vendorAuthRouter')
 app.use('/api', userAuthRouters)
 app.use('/api', demoAuthRouters)
 app.use('/api', vendorAuthRoutes)
+app.use('/api',vendorProductRouters)
 
 
 //testing heroku deployment

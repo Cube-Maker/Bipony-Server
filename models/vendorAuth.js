@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const {ObjectId} = mongoose.Schema.Types;
 
 //user auth schema 
 const vendorAuthSchema = new mongoose.Schema({
