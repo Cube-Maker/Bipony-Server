@@ -82,8 +82,6 @@ exports.getVerifiedProduct = async (req, res) => {
     }
 }
 
-
-
 //get product with specified id
 
 exports.getSpecificProduct = async (req, res) => {
